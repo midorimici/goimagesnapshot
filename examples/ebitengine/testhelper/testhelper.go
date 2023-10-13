@@ -1,15 +1,15 @@
 package testhelper
 
-import "github.com/hajimehoshi/ebiten/v2"
+import (
+	"testing"
+
+	"github.com/hajimehoshi/ebiten/v2"
+)
 
 const (
 	screenWidth  = 320
 	screenHeight = 240
 )
-
-type TestGame interface {
-	Run() error
-}
 
 type game[T any] struct {
 	tests            []T
@@ -18,7 +18,7 @@ type game[T any] struct {
 	hasDone          bool
 }
 
-func NewGame[T any](tests []T, draw func(tt T) func(screen *ebiten.Image)) TestGame {
+func RunGame[T any](t *testing.T, tests []T, draw func(tt T) func(screen *ebiten.Image)) {
 	ebiten.SetWindowSize(screenWidth, screenHeight)
 
 	g := &game[T]{tests: tests}
@@ -40,11 +40,9 @@ func NewGame[T any](tests []T, draw func(tt T) func(screen *ebiten.Image)) TestG
 
 	g.draw = drawFn
 
-	return g
-}
-
-func NewGameWithSingleCase(draw func(screen *ebiten.Image)) TestGame {
-	return NewGame([]struct{}{{}}, func(struct{}) func(screen *ebiten.Image) { return draw })
+	if err := ebiten.RunGame(g); err != nil {
+		t.Errorf("ebiten.RunGame() error = %v", err)
+	}
 }
 
 func (g *game[T]) Update() error {
@@ -62,8 +60,4 @@ func (g *game[T]) Draw(screen *ebiten.Image) {
 
 func (g *game[T]) Layout(w, h int) (int, int) {
 	return screenWidth, screenHeight
-}
-
-func (g *game[T]) Run() error {
-	return ebiten.RunGame(g)
 }

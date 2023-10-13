@@ -5,6 +5,7 @@ import (
 	"testing"
 
 	"github.com/hajimehoshi/ebiten/v2"
+
 	snap "github.com/midorimici/goimagesnapshot"
 	animation "github.com/midorimici/goimagesnapshot/examples/ebitengine"
 	"github.com/midorimici/goimagesnapshot/examples/ebitengine/testhelper"
@@ -25,7 +26,7 @@ func Test_animation_Draw(t *testing.T) {
 		tests = append(tests, test{5 * i})
 	}
 
-	g := testhelper.NewGame(tests, func(tt test) func(screen *ebiten.Image) {
+	testhelper.RunGame(t, tests, func(tt test) func(screen *ebiten.Image) {
 		a := animation.New()
 
 		for i := 0; i < tt.updateCount; i++ {
@@ -43,8 +44,4 @@ func Test_animation_Draw(t *testing.T) {
 			})
 		}
 	})
-
-	if err := g.Run(); err != nil {
-		t.Errorf("game.Run() error = %v", err)
-	}
 }
