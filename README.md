@@ -1,5 +1,7 @@
 # goimagesnapshot
 
+<a href="https://godoc.org/github.com/midorimici/goimagesnapshot"><img src="https://godoc.org/github.com/midorimici/goimagesnapshot?status.svg" alt="GoDoc" /></a>
+
 Snapshot testing for images in Go.
 
 ## Usage
