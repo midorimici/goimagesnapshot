@@ -1,63 +1,40 @@
 package testhelper
 
 import (
+	"log"
 	"testing"
 
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
-const (
-	screenWidth  = 320
-	screenHeight = 240
-)
-
-type game[T any] struct {
-	tests            []T
-	currentTestIndex int
-	draw             func(tt T) func(screen *ebiten.Image)
-	hasDone          bool
+type game struct {
+	m *testing.M
 }
 
-func RunGame[T any](t *testing.T, tests []T, draw func(tt T) func(screen *ebiten.Image)) {
-	ebiten.SetWindowSize(screenWidth, screenHeight)
-
-	g := &game[T]{tests: tests}
-	tc := len(tests)
-
-	if tc == 0 {
-		g.hasDone = true
-	}
-
-	drawFn := func(tt T) func(screen *ebiten.Image) {
-		return func(screen *ebiten.Image) {
-			draw(tt)(screen)
-			g.currentTestIndex++
-			if g.currentTestIndex >= tc {
-				g.hasDone = true
-			}
-		}
-	}
-
-	g.draw = drawFn
-
-	if err := ebiten.RunGame(g); err != nil {
-		t.Errorf("ebiten.RunGame() error = %v", err)
-	}
+func (g *game) Update() error {
+	g.m.Run()
+	return ebiten.Termination
 }
 
-func (g *game[T]) Update() error {
-	if g.hasDone {
-		return ebiten.Termination
+func (g *game) Draw(screen *ebiten.Image) {}
+
+func (g *game) Layout(int, int) (int, int) {
+	return 1, 1
+}
+
+func RunGame(m *testing.M) {
+	ebiten.SetWindowDecorated(false)
+	ebiten.SetWindowSize(1, 1)
+	ebiten.SetWindowPosition(-10, -10)
+
+	g := &game{m: m}
+
+	op := &ebiten.RunGameOptions{
+		InitUnfocused:     true,
+		ScreenTransparent: true,
+		SkipTaskbar:       true,
 	}
-
-	return nil
-}
-
-func (g *game[T]) Draw(screen *ebiten.Image) {
-	t := g.tests[g.currentTestIndex]
-	g.draw(t)(screen)
-}
-
-func (g *game[T]) Layout(w, h int) (int, int) {
-	return screenWidth, screenHeight
+	if err := ebiten.RunGameWithOptions(g, op); err != nil {
+		log.Fatal(err)
+	}
 }
