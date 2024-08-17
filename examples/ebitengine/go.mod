@@ -1,6 +1,6 @@
 module github.com/midorimici/goimagesnapshot/examples/ebitengine
 
-go 1.20
+go 1.22.4
 
 require github.com/hajimehoshi/ebiten/v2 v2.6.2
 
