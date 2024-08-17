@@ -101,7 +101,7 @@ func Compare(filePath string, i image.Image, config *option.SnapshotConfig) (boo
 	imgPath := fmt.Sprintf("%s_%s%s", fileNameWithoutExt, t, ext)
 	Take(imgPath, i)
 
-	printer.Yellowf("❌ Snapshots did not match (diff %.4f%%). Files %s and %s were created\n", percent, imgPath, diffPath)
+	printer.Yellowf("⚠️ Snapshots did not match (diff %.4f%%). Files %s and %s were created\n", percent, imgPath, diffPath)
 
 	return false, nil
 }
