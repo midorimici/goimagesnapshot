@@ -36,7 +36,7 @@ func Test_animation_Draw(t *testing.T) {
 
 			for i := 0; i < tt.updateCount; i++ {
 				if err := a.Update(); err != nil {
-					t.Errorf("animation.Update() error = %v", err)
+					t.Fatalf("animation.Update() error = %v", err)
 				}
 			}
 
