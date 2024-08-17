@@ -19,12 +19,13 @@ import (
 	"testing"
 
 	"github.com/midorimici/goimagesnapshot/internal/option"
+	"github.com/midorimici/goimagesnapshot/updatetype"
 )
 
 func Test_NewMatcherConfig(t *testing.T) {
 	type want struct {
 		directory  string
-		updateType option.UpdateType
+		updateType updatetype.UpdateType
 	}
 	tests := []struct {
 		name               string
@@ -36,7 +37,7 @@ func Test_NewMatcherConfig(t *testing.T) {
 			name: "returns a correct matcher config with no option and environment variable",
 			want: want{
 				directory:  "__snapshots__",
-				updateType: option.UpdateTypeNone,
+				updateType: updatetype.UpdateTypeNone,
 			},
 		},
 		{
@@ -44,7 +45,7 @@ func Test_NewMatcherConfig(t *testing.T) {
 			envUpdateSnapshots: "1",
 			want: want{
 				directory:  "__snapshots__",
-				updateType: option.UpdateTypeNormal,
+				updateType: updatetype.UpdateTypeNormal,
 			},
 		},
 		{
@@ -52,7 +53,7 @@ func Test_NewMatcherConfig(t *testing.T) {
 			envUpdateSnapshots: "2",
 			want: want{
 				directory:  "__snapshots__",
-				updateType: option.UpdateTypeAll,
+				updateType: updatetype.UpdateTypeAll,
 			},
 		},
 		{
@@ -60,7 +61,7 @@ func Test_NewMatcherConfig(t *testing.T) {
 			opts: []option.MatcherOption{option.WithDirectory("test_dir")},
 			want: want{
 				directory:  "test_dir",
-				updateType: option.UpdateTypeNone,
+				updateType: updatetype.UpdateTypeNone,
 			},
 		},
 		{
@@ -69,7 +70,7 @@ func Test_NewMatcherConfig(t *testing.T) {
 			opts:               []option.MatcherOption{option.WithDirectory("test_dir")},
 			want: want{
 				directory:  "test_dir",
-				updateType: option.UpdateTypeNormal,
+				updateType: updatetype.UpdateTypeNormal,
 			},
 		},
 		{
@@ -78,7 +79,7 @@ func Test_NewMatcherConfig(t *testing.T) {
 			opts:               []option.MatcherOption{option.WithDirectory("test_dir")},
 			want: want{
 				directory:  "test_dir",
-				updateType: option.UpdateTypeAll,
+				updateType: updatetype.UpdateTypeAll,
 			},
 		},
 	}

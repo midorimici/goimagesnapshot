@@ -26,12 +26,13 @@ import (
 	"github.com/midorimici/goimagesnapshot/internal/printer"
 	"github.com/midorimici/goimagesnapshot/internal/snapshot"
 	"github.com/midorimici/goimagesnapshot/internal/testing"
+	"github.com/midorimici/goimagesnapshot/updatetype"
 )
 
 func Setup(config *option.MatcherConfig) error {
 	const funcName = "matcher.Setup"
 
-	if config.UpdateType() == option.UpdateTypeAll {
+	if config.UpdateType() == updatetype.UpdateTypeAll {
 		if err := snapshot.RemoveDirectory(config.Directory()); err != nil {
 			return fmt.Errorf("%s: %w", funcName, err)
 		}
@@ -81,7 +82,7 @@ func Match(t testing.T, i image.Image, mc *option.MatcherConfig, sc *option.Snap
 
 	// The snapshot exists
 
-	if mc.UpdateType() == option.UpdateTypeNormal {
+	if mc.UpdateType() == updatetype.UpdateTypeNormal {
 		// Remove existing snapshots first when updating
 		if err := os.Remove(filePath); err != nil {
 			t.Errorf("%s: %v", funcName, err)

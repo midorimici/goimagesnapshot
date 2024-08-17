@@ -14,14 +14,8 @@
 
 package option
 
-import "os"
-
-type updateType int
-
-const (
-	UpdateTypeNone   updateType = iota // Does not update snapshots.
-	UpdateTypeNormal                   // Updates snapshots with the same name, but does not delete obsolete files.
-	UpdateTypeAll                      // Removes snapshot directory at first, thus obsolete files are deleted.
+import (
+	"github.com/midorimici/goimagesnapshot/updatetype"
 )
 
 type MatcherOption interface {
@@ -30,7 +24,7 @@ type MatcherOption interface {
 
 type MatcherConfig struct {
 	directory  string
-	updateType updateType
+	updateType updatetype.UpdateType
 }
 
 func NewMatcherConfig(opts ...MatcherOption) *MatcherConfig {
@@ -42,15 +36,7 @@ func NewMatcherConfig(opts ...MatcherOption) *MatcherConfig {
 }
 
 func defaultMatcherConfig() *MatcherConfig {
-	v := os.Getenv("UPDATE_SNAPSHOTS")
-	ut := UpdateTypeNone
-	switch v {
-	case "1":
-		ut = UpdateTypeNormal
-
-	case "2":
-		ut = UpdateTypeAll
-	}
+	ut := updatetype.Type()
 
 	return &MatcherConfig{
 		directory:  "__snapshots__",
@@ -62,7 +48,7 @@ func (c *MatcherConfig) Directory() string {
 	return c.directory
 }
 
-func (c *MatcherConfig) UpdateType() updateType {
+func (c *MatcherConfig) UpdateType() updatetype.UpdateType {
 	return c.updateType
 }
 
