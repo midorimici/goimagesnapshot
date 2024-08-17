@@ -4,8 +4,8 @@ github.com/hajimehoshi/ebiten/v2 v2.6.2 h1:tVa3ZJbp4Uz/VSjmpgtQIOvwd7aQH290XehHB
 github.com/hajimehoshi/ebiten/v2 v2.6.2/go.mod h1:TZtorL713an00UW4LyvMeKD8uXWnuIuCPtlH11b0pgI=
 github.com/jezek/xgb v1.1.0 h1:wnpxJzP1+rkbGclEkmwpVFQWpuE2PUGNUzP8SbfFobk=
 github.com/jezek/xgb v1.1.0/go.mod h1:nrhwO0FX/enq75I7Y7G8iN1ubpSGZEiA3v9e9GyRFlk=
-github.com/midorimici/goimagesnapshot v0.2.1 h1:g4FI50vzKfenIvmVevTJx6gTk+W0ijAIuDJ5JBVxs1c=
-github.com/midorimici/goimagesnapshot v0.2.1/go.mod h1:4p4wkArpBHkHdMfK0a/UaX93ht5wI7FgSVkxc3jF7c4=
+github.com/midorimici/goimagesnapshot v0.3.0 h1:00QzQnLisGsV71RABQPZyJG938wBpGxop+nFyUapVL0=
+github.com/midorimici/goimagesnapshot v0.3.0/go.mod h1:4p4wkArpBHkHdMfK0a/UaX93ht5wI7FgSVkxc3jF7c4=
 github.com/olegfedoseev/image-diff v0.0.0-20171116094004-897a4e73dfd6 h1:a/kynVgbdXJQDq3WWTgwL0bHyg4hu4/oIK9UB+Ugvfo=
 github.com/olegfedoseev/image-diff v0.0.0-20171116094004-897a4e73dfd6/go.mod h1:OgMVaRcJ1TgmPHB/MF2YaHOzRxmw6vVG/DquoMhkCiY=
 github.com/yuin/goldmark v1.4.13/go.mod h1:6yULJ656Px+3vBD8DxQVa3kxgyrAnzto9xy5taEt/CY=
