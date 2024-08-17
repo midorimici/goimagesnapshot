@@ -21,11 +21,11 @@ import (
 	"path"
 	"strings"
 	"syscall"
-	"testing"
 
 	"github.com/midorimici/goimagesnapshot/internal/option"
 	"github.com/midorimici/goimagesnapshot/internal/printer"
 	"github.com/midorimici/goimagesnapshot/internal/snapshot"
+	"github.com/midorimici/goimagesnapshot/internal/testing"
 )
 
 func Setup(config *option.MatcherConfig) error {
@@ -42,7 +42,7 @@ func Setup(config *option.MatcherConfig) error {
 
 const extension = ".png"
 
-func Match(t *testing.T, i image.Image, mc *option.MatcherConfig, sc *option.SnapshotConfig) {
+func Match(t testing.T, i image.Image, mc *option.MatcherConfig, sc *option.SnapshotConfig) {
 	const funcName = "matcher.Match"
 
 	defaultUmask := syscall.Umask(0)
