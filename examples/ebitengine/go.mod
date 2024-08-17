@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	github.com/hajimehoshi/ebiten/v2 v2.6.2
-	github.com/midorimici/goimagesnapshot v0.3.0
+	github.com/midorimici/goimagesnapshot v0.3.1
 )
 
 require (
