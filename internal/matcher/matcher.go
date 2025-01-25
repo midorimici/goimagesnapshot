@@ -51,7 +51,7 @@ func Match(t testing.T, i image.Image, mc *option.MatcherConfig, sc *option.Snap
 
 	if _, err := os.Stat(mc.Directory()); os.IsNotExist(err) {
 		// Create snapshot directory
-		if err := os.Mkdir(mc.Directory(), 0777); err != nil {
+		if err := os.MkdirAll(mc.Directory(), 0777); err != nil {
 			t.Errorf("%s: %v", funcName, err)
 			return
 		}

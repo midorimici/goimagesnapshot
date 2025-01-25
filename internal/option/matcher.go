@@ -39,7 +39,7 @@ func defaultMatcherConfig() *MatcherConfig {
 	ut := updatetype.Type()
 
 	return &MatcherConfig{
-		directory:  "__snapshots__",
+		directory:  "testdata/snapshots",
 		updateType: ut,
 	}
 }

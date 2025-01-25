@@ -19,7 +19,7 @@ import "github.com/midorimici/goimagesnapshot/internal/option"
 // WithDirectory returns a snapshot matcher option
 // which specifies the directory name where the output snapshot images are put.
 //
-// The default value is "__snapshots__".
+// The default value is "testdata/snapshots".
 func WithDirectory(d string) option.MatcherOption {
 	return option.WithDirectory(d)
 }

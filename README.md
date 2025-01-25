@@ -11,7 +11,7 @@ Snapshot testing for images in Go.
 
 You can use `Match` function to test whether the given image is not changed as the previously generated snapshot image.
 If no snapshot image is found, a new snapshot is created and the test fails.
-By default, running a test creates `__snapshot__` directory beside a test file and snapshot images are put in the directory.
+By default, running a test creates `testdata/snapshots` directory beside a test file and snapshot images are put in the directory.
 
 ```go
 import snap "github.com/midorimici/goimagesnapshot"

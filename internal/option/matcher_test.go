@@ -36,7 +36,7 @@ func Test_NewMatcherConfig(t *testing.T) {
 		{
 			name: "returns a correct matcher config with no option and environment variable",
 			want: want{
-				directory:  "__snapshots__",
+				directory:  "testdata/snapshots",
 				updateType: updatetype.UpdateTypeNone,
 			},
 		},
@@ -44,7 +44,7 @@ func Test_NewMatcherConfig(t *testing.T) {
 			name:               "returns a correct matcher config with no option and UPDATE_SNAPSHOTS=1",
 			envUpdateSnapshots: "1",
 			want: want{
-				directory:  "__snapshots__",
+				directory:  "testdata/snapshots",
 				updateType: updatetype.UpdateTypeNormal,
 			},
 		},
@@ -52,7 +52,7 @@ func Test_NewMatcherConfig(t *testing.T) {
 			name:               "returns a correct matcher config with no option and UPDATE_SNAPSHOTS=2",
 			envUpdateSnapshots: "2",
 			want: want{
-				directory:  "__snapshots__",
+				directory:  "testdata/snapshots",
 				updateType: updatetype.UpdateTypeAll,
 			},
 		},
